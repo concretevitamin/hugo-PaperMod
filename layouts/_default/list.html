@@ -66,8 +66,10 @@
   {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
   <header class="entry-header">
     <h2>
+    <a aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}">
       {{- .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
+    </a>
     </h2>
   </header>
   {{- if (ne (.Param "hideSummary") true) }}
@@ -80,7 +82,6 @@
     {{- partial "post_meta.html" . -}}
   </footer>
   {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- end }}
 
