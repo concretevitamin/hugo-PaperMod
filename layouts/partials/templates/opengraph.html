@@ -32,7 +32,7 @@
 {{- $FilePath := .File.Path -}}
 {{- range $.Site.Data.gitoutput.gitinfo -}}
 	{{- if eq $FilePath .FilePath -}}
-    {{- $LastmodDate := .LastmodDate -}}
+    {{- $LastmodDate = .LastmodDate -}}
 	{{- end }}
 {{- end }}
 
