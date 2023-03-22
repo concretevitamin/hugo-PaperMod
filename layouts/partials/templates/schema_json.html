@@ -83,10 +83,11 @@
   {{- end -}}
   "datePublished": {{ .PublishDate }},
 {{- $LastmodDate := .Lastmod -}}
+{{- $FilePath := .File.Path -}}
 {{- range $.Site.Data.gitoutput.gitinfo -}}
-	{{- if eq .File.Path .FilePath -}}
+  {{- if eq $FilePath .FilePath -}}
     {{- $LastmodDate := .LastmodDate -}}
-	{{- end }}
+  {{- end }}
 {{- end }}
   "dateModified": {{ $LastmodDate }},
   {{- with (.Params.author | default site.Params.author) }}

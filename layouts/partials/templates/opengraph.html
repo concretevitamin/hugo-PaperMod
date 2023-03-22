@@ -29,8 +29,9 @@
 
 <!-- https://www.brycewray.com/posts/2023/02/get-good-git-info-even-hosts-gui/ -->
 {{- $LastmodDate := .Lastmod -}}
+{{- $FilePath := .File.Path -}}
 {{- range $.Site.Data.gitoutput.gitinfo -}}
-	{{- if eq .File.Path .FilePath -}}
+	{{- if eq $FilePath .FilePath -}}
     {{- $LastmodDate := .LastmodDate -}}
 	{{- end }}
 {{- end }}
