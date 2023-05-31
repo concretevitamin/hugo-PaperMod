@@ -30,7 +30,9 @@
     {{- else }}{{/* For absolute urls and external links, no img processing here */}}
         {{- if $addLink }}<a href="{{ (.Params.cover.image) | absURL }}" target="_blank"
             rel="noopener noreferrer">{{ end -}}
+<a aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}">
             <img loading="lazy" src="{{ (.Params.cover.image) | absURL }}" alt="{{ $alt }}">
+</a>
     {{- end }}
     {{- if $addLink }}</a>{{ end -}}
     {{/*  Display Caption  */}}
