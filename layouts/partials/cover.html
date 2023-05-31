@@ -14,7 +14,10 @@
             {{- $processableFormats = $processableFormats | append "webp" -}}
         {{- end -}}
         {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+
+{{- if $.IsHome }}
 <a aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}">
+{{- end }}
         {{- if (and (in $processableFormats $cover.MediaType.SubType) ($responsiveImages) (eq $prod true)) }}
         <img loading="lazy" srcset="{{- range $size := $sizes -}}
                         {{- if (ge $cover.Width $size) -}}
@@ -26,13 +29,19 @@
         {{- else }}{{/* Unprocessable image or responsive images disabled */}}
         <img loading="lazy" src="{{ (path.Join .RelPermalink .Params.cover.image) | absURL }}" alt="{{ $alt }}">
         {{- end }}
+{{- if $.IsHome }}
 </a>
+{{- end }}
     {{- else }}{{/* For absolute urls and external links, no img processing here */}}
         {{- if $addLink }}<a href="{{ (.Params.cover.image) | absURL }}" target="_blank"
             rel="noopener noreferrer">{{ end -}}
+{{- if $.IsHome }}
 <a aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}">
+{{- end }}
             <img loading="lazy" src="{{ (.Params.cover.image) | absURL }}" alt="{{ $alt }}">
+{{- if $.IsHome }}
 </a>
+{{- end }}
     {{- end }}
     {{- if $addLink }}</a>{{ end -}}
     {{/*  Display Caption  */}}
